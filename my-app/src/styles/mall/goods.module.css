@@ -1,0 +1,40 @@
+.goods {
+    width: 100vw;
+    height: 100vh;
+    padding: 10px;
+    text-align: center;
+    /* display: flex; */
+}
+
+.goodsInfo {
+
+}
+.goodsPhoto {
+
+}
+.image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+.goodsTitle {
+
+}
+
+.goodsDetails {
+    text-align: left;
+}
+.price, .sales, .description {
+    font-size: 16px;
+    margin-top: 10px;
+}
+.price {
+    color: #e91e63;
+}
+.sales {
+    color: #888;
+}
+
+.goodsEvaluation {
+
+}

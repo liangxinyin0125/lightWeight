@@ -1,0 +1,83 @@
+.goodsList {
+    /* padding: 10px; */
+}
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+}
+.title {
+    width: 100%;
+    padding: 0.7rem;
+    font-weight: 600;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.backButton {
+    left: 0;
+    font-size: 24px;
+    margin-right: 20px;
+    padding: 5px 10px;
+    position: absolute;
+    cursor: pointer;
+}
+.sortOptions {
+    padding-top: 10px;
+    gap: 4rem;
+    font-size: 1rem;
+    display: flex;
+    
+}
+.sortOptions span {
+    padding: 5px;
+    /* text-decoration: none; */
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+.sortOptions span:hover {
+    color: rgb(249, 115, 13);
+}
+.selected {
+    color: rgb(235, 113, 21);
+    border-bottom: 2px solid rgb(235, 113, 21);
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f5f5f5;
+}
+.gridItem {
+    width: calc(50% - 20px); /* 每行两个方格，减去左右间距 */
+    margin: 10px;
+    cursor: pointer;
+    text-align: center;
+    background-color: white;
+}
+.image {
+    width: 100%;
+    height: auto;
+}
+.title {
+    font-size: 16px;
+    margin-top: 10px;
+}
+.price {
+    font-size: 0.9rem;
+    color: rgb(235, 85, 21);
+} 
+.price span::before {
+    content: '¥';
+    font-size: 0.9rem;
+    color: rgb(235, 85, 21);
+}
+.sales {
+    font-size: 14px;
+    color: #888;
+}

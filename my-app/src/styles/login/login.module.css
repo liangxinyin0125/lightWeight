@@ -1,0 +1,103 @@
+.login {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #97bdf9, #bde8fc);
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.loginTop {
+    width: 100%;
+    height: 40%;
+    padding: 0.3rem;
+    margin-bottom: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around ;
+}
+.words1 {
+    font-size: 6rem;
+    /* font-size: 24vw; */
+    font-weight: 600;
+    padding: 10px;
+    color: white;
+    text-shadow: 0.3rem 0.3rem #292929;
+    /* background: linear-gradient(135deg, #c850c0, #4158d0); */
+}
+.appInfo {
+    width: 100%;
+    font-weight: 600;
+    color: rgb(235, 113, 21);
+    text-shadow: 0.2rem 0.2rem white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-around; */
+}
+.info_column {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.words2 {
+    width: 60%;
+    font-size: 2.4rem;
+    /* font-size: 15vw; */
+    font-weight: 600;
+}
+.app_icon {
+    /* width: 20vw; */
+    width: 30%;
+}
+.title {
+    padding-bottom: 40px;
+    font-size:  2.4rem;
+    font-weight: 600;
+    text-align: center;
+}
+.loginMain {
+    width: 100%;
+    height: 60%;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around ;
+    background-color:  rgba(255, 255, 255, 0.5); ;
+}
+.buttonContainer {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+.buttonLogin {
+    width: 100%;
+    height: 2.7rem;
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fc9264;
+}
+h2 {
+    padding: 10px;
+    font-size: 60px;
+    font-weight: 600;
+    text-align: center;
+}
+.login_label_item {
+    font-size: 1.2rem;
+}
+.login_input_item {
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 10px;
+    border: 2px solid #fc9264;
+}
