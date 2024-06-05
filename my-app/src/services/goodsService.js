@@ -14,6 +14,7 @@ export const goodsLists = {
     110: [
         {
             id: 111,
+            brand: '法丽兹',
             title: '法丽兹 抹茶慕斯味',
             description: '法丽兹抹茶慕斯味巧克力曲奇饼干休闲零食115g/盒',
             price: 12.99,
@@ -22,6 +23,7 @@ export const goodsLists = {
         },
         {
             id: 112,
+            brand: '法丽兹',
             title: '法丽兹 醇香黑巧克力味',
             description: '法丽兹醇香黑巧克力味曲奇饼干休闲零食 115g/盒',
             price: 11.99,
@@ -30,6 +32,7 @@ export const goodsLists = {
         },
         {
             id: 113,
+            brand: '法丽兹',
             title: '法丽兹 酸奶巧克力味',
             description: '法丽兹曲奇饼酸奶巧克力味曲奇饼干休闲零食115g',
             price: 11.99,

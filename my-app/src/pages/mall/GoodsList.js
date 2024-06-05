@@ -71,19 +71,19 @@ const GoodsList = () => {
                         onClick={() => handleGoodsClick(product.id)}
                     >
                         <img src={product.imageUrl} alt={product.title} className={styles.image} />
-                        <div>
-                            <div className={styles.title}>{product.title}</div>
-                            <div className={styles.price}>
-                                {/* ¥{product.price} */}
-                                {product.price}
+                        <div className={styles.infoContainer}>
+                            <div className={styles.goodsTitle}>{product.title}</div>
+                            <div className={styles.saleInfo}>
+                                <div className={styles.price}>{product.price}</div>
+                                <div className={styles.sales}>销售量: {product.sales}</div>
                             </div>
-                            <div className={styles.sales}>销售量: {product.sales}</div>
                         </div>
 
                     </div>
                 ))}
             </div>
-            <MallTabBar activeKey='classification'></MallTabBar>
+            <div className={styles.end}>没有更多数据了</div>
+            {/* <MallTabBar activeKey='classification'></MallTabBar> */}
         </div>
     )
 }

@@ -13,7 +13,7 @@
     width: 100%;
     padding: 0.7rem;
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,7 +32,6 @@
     gap: 4rem;
     font-size: 1rem;
     display: flex;
-    
 }
 .sortOptions span {
     padding: 5px;
@@ -56,28 +55,56 @@
 .gridItem {
     width: calc(50% - 20px); /* 每行两个方格，减去左右间距 */
     margin: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
     cursor: pointer;
-    text-align: center;
+    /* text-align: center; */
     background-color: white;
 }
 .image {
     width: 100%;
     height: auto;
 }
-.title {
+.infoContainer {
+    padding-left: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+.goodsTitle {
+    margin-bottom: 4px;
     font-size: 16px;
-    margin-top: 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: start;
+}
+.saleInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }
 .price {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 4px;
     color: rgb(235, 85, 21);
 } 
-.price span::before {
+.price::before {
     content: '¥';
     font-size: 0.9rem;
+    font-weight: 400;
     color: rgb(235, 85, 21);
 }
 .sales {
     font-size: 14px;
-    color: #888;
+    color: #a5a4a4;
+}
+
+.end {
+    margin: 10px;
+    text-align: center;
+    color: #939090;
 }

@@ -20,14 +20,14 @@
               - 搜索框
               - 轮播图
               - 热门商品
-            - Classification.js: 分类(lxy+忆)
+            - Classification.js: 分类(lxy)
               - 商品id命名：x(表示类别:饼干、膨化薯片、辣条、缤纷糖果、甜品)x(品种)x(该品种中商品的具体id)
               - 1饼干：1法丽兹、2雀巢、3百奇、4奥利奥、5纳宝帝
               - 2膨化薯片：乐事、奇多、呀土豆
               - 3辣条：卫龙、麻辣王子、
               - 4缤纷糖果：旺仔、德芙、悠哈、阿尔卑斯
               - 5甜品：甜甜圈、蛋糕、
-            - GoodsList.js: 商品列表
+            - GoodsList.js: 商品列表（lxy）
             - Goods.js: 商品页面（lxy）
             - ShoppinCart.js: 购物车（lxy,骏）
             - Mine.js: 我的（梁）
