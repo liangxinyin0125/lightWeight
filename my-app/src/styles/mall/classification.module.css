@@ -6,14 +6,12 @@
 }
 
 .head {
-    /* margin: 0.3rem; */
     padding: 0.7rem;
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: 18px;
     display: flex;
     justify-content: center;
     text-align: center;
-    /* background-color: #f5f5f5; */
     border-bottom: 1px solid #ccc;
 }
 

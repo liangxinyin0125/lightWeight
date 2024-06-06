@@ -58,13 +58,13 @@ const Goods = ({ }) => {
                     <div className={styles.list}>
                         <TruckOutlined className={styles.icons} />
                         <div>
-                            <div className={styles.detailsTitle} style={{paddingBottom:'5px'}}>48小时内发货</div>
+                            <div className={styles.detailsTitle} style={{ paddingBottom: '5px' }}>48小时内发货</div>
                             <div className={styles.detailsTitle}>广东广州  快递：免运费</div>
                         </div>
                     </div>
                     <div className={styles.list} onClick={handleReturnPolicy}>
                         <div className={styles.detailsTitle}>
-                            <div style={{display:'flex', alignItems:'center'}}>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <InsuranceOutlined className={styles.icons} />
                                 退货运费险 七天无理由退货
                             </div>
@@ -73,7 +73,7 @@ const Goods = ({ }) => {
                     </div>
                     <div className={styles.list} onClick={handleBrandInfo}>
                         <div className={styles.detailsTitle}>
-                            <div style={{display:'flex', alignItems:'center'}}>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <ReconciliationOutlined className={styles.icons} />
                                 品牌信息及保质期
                             </div>
@@ -86,10 +86,13 @@ const Goods = ({ }) => {
             <div className={styles.goodsEvaluation}>
             </div>
 
-            <div className={styles.goodsActions}>
-                <button className={styles.addToCartButton}>加入购物车</button>
-                <button className={styles.buyNowButton}>立即购买</button>
+            <div className={styles.end}>
+                <div className={styles.goodsActionsButtons}>
+                    <button className={styles.addToCartButton}>加入购物车</button>
+                    <button className={styles.buyNowButton}>立即购买</button>
+                </div>
             </div>
+
 
             <CSSTransition
                 in={showModal}

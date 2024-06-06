@@ -37,7 +37,7 @@ const GoodsList = () => {
 
     return (
         <div className={styles.goodsList}>
-            <div className={styles.header}>
+            <div className={styles.head}>
                 <div className={styles.title}>
                     <LeftOutlined onClick={handleBackClick} className={styles.backButton} />
                     <div>商品列表</div>

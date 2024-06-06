@@ -34,7 +34,7 @@
             - Address.js:地址管理页面(梁，骏)
         - pay: 购买全链路文件夹
             - CreateOrder.js: 创建订单页面(骏,东)
-            - Pay.js: 支付页面(lxy+忆)
+            - Pay.js: 支付页面(lxy)
             - PaySuccess.js: 支付成功页面(lxy)
             - Order.js: 订单详情页面(骏,东)
 

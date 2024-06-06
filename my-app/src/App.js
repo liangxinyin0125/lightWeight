@@ -8,6 +8,8 @@ import Home from './pages/mall/Home';
 import Classification from './pages/mall/Classification';
 import Goods from './pages/mall/Goods';
 import GoodsList from './pages/mall/GoodsList';
+import Pay from './pages/pay/Pay';
+import PaySuccess from './pages/pay/PaySuccess';
 import ShoppinCart from './pages/mall/Shoppincart'
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
         <Route exact path="/classification" component={Classification} />
         <Route exact path="/goods/:id" component={Goods} />
         <Route exact path="/goodsList/:id" component={GoodsList} />
+        <Route exact path="/pay" component={Pay} />
+        <Route exact path="/paySuccess" component={PaySuccess} />
         <Route exact path="/shoppinCart" component={ShoppinCart} />
         {/* <Route exact path="/goodService" component={goodService} /> */}
       </Switch>
