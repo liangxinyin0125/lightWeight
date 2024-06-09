@@ -4,15 +4,15 @@ import React, { useState, useLayoutEffect } from 'react';
 import { PlusOutlined, MinusOutlined, LeftOutlined, EnvironmentFilled, EnvironmentTwoTone, setTwoToneColor } from '@ant-design/icons';
 import MallTabBar from "../../components/MallTabBar";
 import styles from "../../styles/pay/createOrder.module.css";
+import { readDefaultAddress } from "../../services/addressService";
 import { writeTempOrder, readTempOrder, clearTempOrder, createOrder } from "../../services/orderServices";
 
 setTwoToneColor('#ff5000');
 
 const CreateOrder = () => {
     const order = readTempOrder();
-    console.log(order);
     const isEmpty = (order.length == 0);
-    const address = localStorage.getItem('default_address'); // 后续会改成调用服务
+    const address = readDefaultAddress();
     const history = useHistory();
     const [total, setTotal] = useState(0); // total其实也可以写进order对象里，但是得有一个set state页面才会重新渲染
 
@@ -69,7 +69,7 @@ const CreateOrder = () => {
                 <Card className={styles.address} title={
                     <div style={{ marginTop: '2rem' }}>
                         <EnvironmentFilled className={styles.mapIcon} />
-                        <a style={{ marginLeft: '0.9rem', fontSize: '1.8rem', color: 'black' }}>{address}</a>
+                        <a style={{ marginLeft: '0.9rem', fontSize: '1.8rem', color: 'black' }}>{address.title}</a>
                     </div>
                 }>
                 </Card>
@@ -88,8 +88,8 @@ const CreateOrder = () => {
                                 <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
                                     <div style={{ color: '#ff5000', marginBottom: '2.5rem' }}>￥{item.detail.price}</div>
                                     <InputNumber style={{ width: '6.5rem', clear: 'both' }} min={1} max={9}
-                                    addonBefore={<MinusOutlined onClick={(e) => onMinus(e, index)}/>}
-                                    addonAfter={<PlusOutlined onClick={(e) => onPlus(e, index)}/>}
+                                    addonBefore={<MinusOutlined onClick={(e) => onMinus(e, index)} disabled={item.number == 1} />}
+                                    addonAfter={<PlusOutlined onClick={(e) => onPlus(e, index)} disabled={item.number == 9} />}
                                     value={item.number} onChange={(e) => onChange(e, index)} />
                                 </div>
                             </List.Item>

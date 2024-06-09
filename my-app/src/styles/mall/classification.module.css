@@ -27,7 +27,7 @@
     background: linear-gradient(225deg, #fee695, #ffaf65);
 }
 .mainRight {
-    flex: 2;
+    flex: 3.5;
     font-size: 0.9rem;
     /* background-color: rgb(253, 249, 238); */
     background: linear-gradient(135deg, rgb(253, 249, 238), rgb(253, 233, 196));
@@ -37,8 +37,10 @@
     flex-wrap: wrap;
 }
 .gridItem {
-    width: 100px;
-    margin: 10px;
+    width: 75px;
+    width: 127px;
+    /* margin: 10px; */
+    /* margin: 5px; */
     text-align: center;
 }
 .image {
@@ -53,6 +55,7 @@ ul {
 }
 li {
     font-size: 1rem;
+    font-size: 14px;
     margin: 10px 0;
     padding: 12px;
     font-weight: bold;

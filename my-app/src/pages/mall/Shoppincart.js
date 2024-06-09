@@ -8,11 +8,6 @@ import { writeTempOrder } from "../../services/orderServices";
 import styles from "../../styles/mall/shoppincart.module.css";
 
 const ShoppinCart = () => {
-    const address = '北京交通大学';
-    localStorage.setItem('default_address', address);
-    // localStorage.removeItem('default_address');
-    // 以上都是调试用的代码
-
     const history = useHistory();
     const items = readShoppincart() || [];
     const isEmpty = (items.length == 0);
@@ -26,6 +21,9 @@ const ShoppinCart = () => {
         else {
             setManage(true);
         }
+    }
+    const onGood = (e, id) => {
+        history.push('/goods/' + String(id));
     }
     const onSelect = (e, index) => {
         const n_select = [...select];
@@ -58,6 +56,7 @@ const ShoppinCart = () => {
     const onDeleteIcon = (e, index) => {
         removeShoppincart(items[index].id);
         setSelect(select.slice(0, index).concat(select.slice(index + 1)));
+        e.stopPropagation();
     }
     return (
         <div className={styles.shoppincart}>
@@ -91,6 +90,7 @@ const ShoppinCart = () => {
                                     <Checkbox className={styles.checkbox} checked={select[index]} onChange={(e) => onSelect(e, index)} style={{ marginRight: '0.6rem' }} />
                                 </ConfigProvider>
                                 <List.Item.Meta
+                                    onClick={(e) => onGood(e, item.id)}
                                     avatar={<Avatar style={{ height: '5rem', width: '5rem' }} shape="square" src={item.imageUrl} />}
                                     title={<span style={{ fontSize: '1rem' }}>{item.title}</span>}
                                     description={

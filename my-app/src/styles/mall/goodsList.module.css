@@ -30,25 +30,21 @@
 .sortOptions {
     width: 90%;
     padding-top: 10px;
-    gap: 4rem;
+    gap: 3rem;
     font-size: 15px;
     display: flex;
     justify-content: space-around;
 }
 .sortOptions span {
-    /* padding: 5px; */
     flex: 1;
     display: flex;
     align-items: center;
-    /* text-decoration: none; */
+    justify-content: center;
     transition: color 0.3s, border-bottom 0.3s;
-}
-.sortOptions span:hover {
-    color: rgb(249, 115, 13);
 }
 .selected {
     color: rgb(235, 113, 21);
-    border-bottom: 2px solid rgb(235, 113, 21);
+    border-bottom: 2px solid rgb(249, 115, 13);
 }
 .priceIcons {
     display: flex;
@@ -57,11 +53,11 @@
     margin-left: 5px;
 }
 .inactiveIcon {
-    font-size: 12px;
+    font-size: 11px;
     color: #ccc;
 }
 .activeIcon {
-    font-size: 12px;
+    font-size: 11px;
     color: rgb(235, 113, 21);
 }
 
