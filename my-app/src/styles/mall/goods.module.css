@@ -1,7 +1,14 @@
 .goods {
     width: 100vw;
+    height: calc(100vh - 50px);
     text-align: center;
     background-color: #f5f5f5;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE 和 Edge 浏览器 */
+    scrollbar-width: none;  /* Firefox 浏览器 */
+}
+.goods::-webkit-scrollbar {
+    display: none; /* 隐藏滚动条 (适用于 Chrome, Safari 和 Opera) */
 }
 .head{
     width: 100%;
@@ -81,7 +88,7 @@
 }
 .list {
     width: 100%;
-    padding: 10px;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
     text-align: start;
@@ -99,26 +106,94 @@
     font-size: 20px;
     padding-right: 10px;
 }
+/* 评价 */
 .goodsEvaluation {
-    margin-top: 20px;
+    margin-top: 7px;
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
+.evaluList1 {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+}
+.evaluIcon {
+    color: #acabab;
+}
+.evaluList2 {
+    display: flex;
+    margin-bottom: 10px;
+}
+.evaluLabel {
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px;
+    color: rgb(248, 100, 51);
+    background: rgb(255, 243, 234);
+}
+.evaluList3 {
+    display: flex;
+}
+.profile {
+    width: 30px;
+ }
+ .list3Left {
+    width: 40px;
+ }
+ .list3Right {
+    width: 100%;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+ }
+ .list3_1 {
+    margin-bottom: 7px;
+    font-size: 14px;
+    display: flex;
+    justify-content: start;
+ }
+/* 底部 */
 .end {
     width: 100%;
     display: flex;
-    /* position: fixed; */
+    position: fixed;
     justify-content: flex-end;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+.collect {
+    width: 20%;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.star {
+    margin: 5px;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+}
+.starCollected {
+    margin: 5px;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    color: rgba(255, 87, 0);
 }
 /* 操作按钮 */
 .goodsActionsButtons {
     width: 80%;
-    margin-top: 20px;
+    margin: 5px;
     display: flex;
-    
 }
 .addToCartButton,
 .buyNowButton {
@@ -134,15 +209,15 @@
     color: #fff;
     background-image: linear-gradient(to right, rgba(255, 199, 2), rgba(255, 151, 4));
 }
-.addToCartButton:hover {
-    background-image: linear-gradient(to right, rgb(249, 196, 6), rgb(242, 143, 4));
+.addToCartButton:active {
+    background-image: linear-gradient(to right, rgba(249, 196, 6), rgba(242, 143, 4));
 }
 .buyNowButton {
     border-radius: 0px 25px 25px 0px;
     color: #fff;
     background-image: linear-gradient(to right, #ff9800, rgba(255, 87, 0));
 }
-.buyNowButton:hover {
+.buyNowButton:active {
     background-image: linear-gradient(to right, #fe8e06, rgb(239, 87, 11));
 }
 /* 信息窗体 */
@@ -172,15 +247,39 @@
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
 }
+.modalLists {
+    background-color: #fff;
+}
+.modalList {
+    width: 100%;
+    padding: 10px;
+    /* padding-top: 30px; */
+    padding-bottom: 30px;
+    /* margin-bottom: 30px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: start;
+    /* border-bottom: 1px solid #ccc; */
+}
+.modalTitle {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: start;
+    color: #333;
+    background-color: #fff;
+}
 .modalCloseButton {
     width: 100%;
     margin-top: 20px;
     padding: 10px 20px;
-    font-size: 15px;
+    font-size: 18px;
     border-radius: 18px;
     color: #fff;
     border: none;
-    background-color: rgba(255, 87, 0);
+    background-image: linear-gradient(to right, #ff9800, rgba(255, 87, 0));
 }
 .modalEnter {
     transform: translateY(100%);

@@ -6,7 +6,8 @@ import styles from "../../styles/mall/classification.module.css";
 
 
 const Classification = () => {
-    const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+    const defaultCategory = categories.find(category => category.name === '饼干') || categories[0];
+    const [selectedCategory, setSelectedCategory] = useState(defaultCategory);
     const history = useHistory();
 
     const handleSubcategoryClick = (subcategory) => {
@@ -23,7 +24,8 @@ const Classification = () => {
                             <li
                                 key={category.name}
                                 onClick={() => setSelectedCategory(category)}
-                                style={{ cursor: 'pointer', margin: '10px 0' }}
+                                className={selectedCategory.name === category.name ? styles.selected : ''}
+                                style={{ margin: '10px 0' }}
                             >
                                 {category.name}
                             </li>
@@ -37,7 +39,7 @@ const Classification = () => {
                                 key={subcategory.name}
                                 className={styles.gridItem}
                                 onClick={() => handleSubcategoryClick(subcategory)}
-                                style={{ cursor: 'pointer', margin: '10px' }}
+                                style={{ margin: '10px' }}
                             >
                                 <img src={subcategory.imageUrl} alt={subcategory.name} className={styles.image} />
                                 <div>{subcategory.name}</div>

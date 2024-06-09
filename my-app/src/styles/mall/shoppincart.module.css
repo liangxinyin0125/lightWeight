@@ -1,0 +1,90 @@
+.shoppincart {
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.header {
+    width: 100vw;
+    padding: 0.7rem;
+    margin-bottom: 0.3rem;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.content {
+    width: 100vw;
+    margin-bottom: 0.3rem;
+}
+
+.textButton {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+.list {
+    height: 70vh;
+    display: block;
+    overflow: auto;
+}
+
+.checkbox {
+    margin: 0.2rem;
+    transform: scale(1.2);
+}
+
+.line {
+    margin-top: 0.9rem;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    font-size: 18px;
+}
+
+.deleteIcon {
+    font-size: 1rem;
+    margin: 1rem;
+    color: red;
+}
+
+.confirmButton {
+    height: 3rem;
+    width: 30vw;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 1.5rem;
+    color: #fff;
+    background-image: linear-gradient(to right, #ff9800, rgba(255, 87, 0));
+    transition: background-color 0.3s ease;
+}
+
+.confirmButton:hover {
+    background-image: linear-gradient(to right, #fb8c00, rgb(239, 87, 11));
+}
+
+.confirmButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.deleteButton {
+    height: 3rem;
+    width: 30vw;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 1.5rem;
+    color: #fff;
+    background-image: linear-gradient(to right, #ff2b65, #ff2f28);
+    transition: background-color 0.3s ease;
+}
+
+.deleteButton :hover {
+    background-image: linear-gradient(to right, #ff215c, #ff2820);
+}

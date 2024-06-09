@@ -1,19 +1,21 @@
 import React, { Component, useState, useRef } from 'react'
-import { Button, Form, Input } from 'antd';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Form, Input, Alert, message } from 'antd';
 import { useHistory, withRouter } from 'react-router-dom';
 import 'antd/dist/reset.css';
 import styles from "../../styles/login/login.module.css";
 
-const onFinish = (values) => {
-    console.log('Success:', values);
-};
-
 const Login = () => {
     const history = useHistory();
+    const [form] = Form.useForm();
 
-    const handleLoginClick = () => {
-        history.push('/home');
+    const onFinish = (values) => {
+        const { userID, password } = values;
+
+        if (userID === 'admin' && password === '123456') {
+            history.push('/home');
+        } else {
+            message.error('用户名或密码错误');
+        }
     };
     const handleRegisterClick = () => {
         history.push('/register');
@@ -38,6 +40,7 @@ const Login = () => {
             <div className={styles.loginMain}>
                 <div className={styles.title}>登录</div>
                 <Form
+                    form={form}
                     name="basic"
                     labelCol={{
                         span: 5,
@@ -84,16 +87,27 @@ const Login = () => {
                     >
                         <Input.Password className={styles.login_input_item} />
                     </Form.Item>
+
+                    <Form.Item >
+                        <div className={styles.buttonContainer}>
+                            <Button type="primary" htmlType="submit" className={styles.buttonAction}>
+                                登录
+                            </Button>
+                            <Button type="primary" onClick={handleRegisterClick} className={styles.buttonAction}>
+                                注册
+                            </Button>
+                        </div>
+                    </Form.Item>
                 </Form>
 
-                <div className={styles.buttonContainer}>
-                    <Button type="primary" className={styles.buttonLogin} htmlType="submit" onClick={handleLoginClick}>
+                {/* <div className={styles.buttonContainer}>
+                    <Button type="primary" className={styles.buttonAction} htmlType="submit" onClick={handleLoginClick}>
                         登录
                     </Button>
-                    <Button type="primary" className={styles.buttonLogin} htmlType="submit" onClick={handleRegisterClick}>
+                    <Button type="primary" className={styles.buttonAction} htmlType="submit" onClick={handleRegisterClick}>
                         注册
                     </Button>
-                </div>
+                </div> */}
             </div>
         </div>
     )

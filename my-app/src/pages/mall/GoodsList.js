@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { LeftOutlined } from '@ant-design/icons';
+import { LeftOutlined, UpOutlined, DownOutlined } from '@ant-design/icons';
 import { goodsLists } from '../../services/goodsService';
-import MallTabBar from "../../components/MallTabBar";
 import styles from "../../styles/mall/goodsList.module.css";
 
 const GoodsList = () => {
@@ -20,13 +18,13 @@ const GoodsList = () => {
     };
 
     const handleSortChange = (option) => {
-        setSortOption(option);
         if (option === 'price') {
             setPriceOrder(priceOrder === 'asc' ? 'desc' : 'asc');
         }
+        setSortOption(option);
     };
 
-    const sortedProducts = [...goodsLists[id]].sort((a, b) => {
+    const sortedGoods = [...goodsLists[id]].sort((a, b) => {
         if (sortOption === 'sales') {
             return b.sales - a.sales;
         } else if (sortOption === 'price') {
@@ -59,12 +57,18 @@ const GoodsList = () => {
                         onClick={() => handleSortChange('price')}
                         className={sortOption === 'price' ? styles.selected : ''}
                     >
-                        价格排序
+                        价格排序 
+                        <div className={styles.priceIcons}>
+                            <UpOutlined className={priceOrder === 'asc' && sortOption === 'price' ? styles.activeIcon : styles.inactiveIcon} />
+                            <DownOutlined className={priceOrder === 'desc' && sortOption === 'price' ? styles.activeIcon : styles.inactiveIcon} />
+                        </div>
+                        {/* {sortOption === 'price' && (priceOrder === 'asc' ? <UpOutlined/> : <DownOutlined/>)} */}
                     </span>
                 </div>
             </div>
-            <div className={styles.grid}>
-                {goodsLists[id].map(product => (
+            <div className={styles.grid}>  
+                {sortedGoods.map(product => (
+                    // {goodsLists[id].map(product => (
                     <div
                         key={product.id}
                         className={styles.gridItem}
@@ -83,7 +87,6 @@ const GoodsList = () => {
                 ))}
             </div>
             <div className={styles.end}>没有更多数据了</div>
-            {/* <MallTabBar activeKey='classification'></MallTabBar> */}
         </div>
     )
 }

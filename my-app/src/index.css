@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* 底部导航栏 */
+.adm-tab-bar-item-active .adm-tab-bar-item-title,
+.adm-tab-bar-item-active .adm-tab-bar-item-icon {
+    color: rgba(255, 87, 0) !important;
+}

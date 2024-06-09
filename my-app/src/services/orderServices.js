@@ -1,4 +1,5 @@
 const writeTempOrder = (order) => {
+    // 直接写入会覆盖原来的值，因此也可用于update
     localStorage.setItem('temp_order', JSON.stringify(order));
 }
 
@@ -10,33 +11,32 @@ const clearTempOrder = () => {
     localStorage.removeItem('temp_order');
 }
 
-const updateTempOrder = (order) => {
-    clearTempOrder();
-    writeTempOrder(order);
-}
-
-const createOrder = () => {
+const createOrder = (total) => {
     var temp = JSON.parse(localStorage.getItem('temp_order'));
-    temp.key = getNumberOfOrder() + 1;
-    var orders = JSON.parse(localStorage.getItem('order_list'));
-    if(orders === null) {
-        orders = [];
-    }
-    writeOrders(orders.concat(temp));
+    temp.key = 1;
+    temp.total = total;
+    temp.state = 'waiting for pay';
+    localStorage.setItem('order', JSON.stringify(temp));
+    localStorage.removeItem('temp_order');
 }
 
-const writeOrders = (orders) => {
-    localStorage.setItem('order_list', JSON.stringify(orders));
+const cancelOrder = () => {
+    var order = JSON.parse(localStorage.getItem('order'));
+    delete order.key;
+    delete order.total;
+    delete order.state;
+    localStorage.setItem('temp_order', JSON.stringify(order));
+    localStorage.removeItem('order');
 }
 
-const getNumberOfOrder = () => {
-    var orders = JSON.parse(localStorage.getItem('order_list'));
-    if(orders == null) {
-        return 0;
-    }
-    else {
-        return orders.length();
-    }
+const updateOrderState = (state) => {
+    var order = JSON.parse(localStorage.getItem('order'));
+    order.state = state;
+    localStorage.setItem('order', JSON.stringify(order));
 }
 
-export { writeTempOrder, readTempOrder, clearTempOrder, updateTempOrder, createOrder }
+const readOrder = () => {
+    return JSON.parse(localStorage.getItem('order'));
+}
+
+export { writeTempOrder, readTempOrder, clearTempOrder, createOrder, cancelOrder, updateOrderState, readOrder };

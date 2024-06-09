@@ -1,7 +1,6 @@
 .login {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(135deg, #97bdf9, #bde8fc);
     background: linear-gradient(135deg, #f6d365, #fda085);
     display: flex;
     flex-direction: column;
@@ -52,7 +51,7 @@
     width: 30%;
 }
 .title {
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     font-size:  2.4rem;
     font-weight: 600;
     text-align: center;
@@ -74,7 +73,7 @@
     flex-direction: column;
     align-items: center; 
 }
-.buttonLogin {
+.buttonAction {
     width: 100%;
     height: 2.7rem;
     margin: 0.5rem;
@@ -86,6 +85,14 @@
     justify-content: center;
     background-color: #fc9264;
 }
+.buttonAction:focus,
+.buttonAction:hover,
+.buttonAction:active {
+    background-color: darkorange !important;
+    border: none;
+    color: #fff;
+}
+
 h2 {
     padding: 10px;
     font-size: 60px;

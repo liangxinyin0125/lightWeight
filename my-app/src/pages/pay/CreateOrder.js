@@ -1,21 +1,20 @@
-import { Button, Card, Layout, List, Avatar, InputNumber } from 'antd';
-import { Redirect } from 'react-router-dom';
+import { Card, List, Avatar, InputNumber } from 'antd';
+import { useHistory } from 'react-router-dom';
 import React, { useState, useLayoutEffect } from 'react';
-import { LeftOutlined, EnvironmentFilled } from '@ant-design/icons';
+import { PlusOutlined, MinusOutlined, LeftOutlined, EnvironmentFilled, EnvironmentTwoTone, setTwoToneColor } from '@ant-design/icons';
 import MallTabBar from "../../components/MallTabBar";
-// import styles from "../../styles/pay/create-order.module.css";
-// import "../../styles/pay/create-order.css";
-import { writeTempOrder, readTempOrder, clearTempOrder, updateTempOrder, createOrder } from "../../services/orderServices";
+import styles from "../../styles/pay/createOrder.module.css";
+import { writeTempOrder, readTempOrder, clearTempOrder, createOrder } from "../../services/orderServices";
 
-const { Header, Content, Footer } = Layout;
+setTwoToneColor('#ff5000');
 
 const CreateOrder = () => {
-    const order = JSON.parse(localStorage.getItem('temp_order'));
+    const order = readTempOrder();
     console.log(order);
-    const address = localStorage.getItem('default_address');
-    const [total, setTotal] = useState(0);
-    const [back, setBack] = useState(false);
-    const [confirm, setConfirm] = useState(false);
+    const isEmpty = (order.length == 0);
+    const address = localStorage.getItem('default_address'); // 后续会改成调用服务
+    const history = useHistory();
+    const [total, setTotal] = useState(0); // total其实也可以写进order对象里，但是得有一个set state页面才会重新渲染
 
     useLayoutEffect(() => {
         calculateTotal();
@@ -23,7 +22,7 @@ const CreateOrder = () => {
 
     const calculateTotal = () => {
         var total = 0;
-        order.data.forEach(element => {
+        order.forEach(element => {
             total += element.detail.price * element.number;
         });
         setTotal(total);
@@ -31,77 +30,80 @@ const CreateOrder = () => {
 
     const onBack = () => {
         clearTempOrder();
-        setBack(true);
+        history.goBack();
+    }
+    const onMinus = (e,index) => {
+        onChange(order[index].number - 1, index);
+    }
+    const onPlus = (e,index) => {
+        onChange(order[index].number + 1, index);
     }
     const onChange = (e, index) => {
-        if(e == null){
+        if(e == null || e < 1){
             e = 1;
         }
-        var n_order = order;
-        n_order.data[index].number = e;
-        updateTempOrder(n_order);
+        if(e > 9) {
+            e = 9;
+        }
+        const n_order = [...order];
+        n_order[index].number = e;
+        writeTempOrder(n_order);
         calculateTotal();
     }
     const onConfirm = () => {
-        createOrder();
-        setConfirm(true);
-    }
-
-    if(back) {
-        return <Redirect to='/shoppinCart' replace='true' />;
-    }
-    if(confirm) {
-        return <Redirect to='/' replace='true' />;
+        createOrder(total);
+        const totalPrice = total;
+        history.push({
+            pathname: '/pay',
+            state: { totalPrice },
+        });
     }
 
     return (
-        <div className='create-order'>
-            <Layout>
-                <Header className='header'>
-                    <Button className='back' icon={<LeftOutlined />} onClick={onBack} />
-                    <h1 className='title'>确认订单</h1>
-                </Header>
-                <Content className='content'>
-                    <Card className='address' title={
-                        <div>
-                            <EnvironmentFilled style={{ fontSize: '1.2rem' }} />
-                            <a style={{ marginLeft: '0.9rem', fontSize: '1.2rem' }}>{address}</a>
-                        </div>
-                    }>
-                    </Card>
-                    <Card className='order' title='订单明细' styles={{ header: { fontSize: '1.2rem', marginTop: '0.6rem' } }}>
-                        <List
-                            className='list'
-                            itemLayout="horizontal"
-                            dataSource={order.data}
-                            renderItem={(item, index) => (
-                                <List.Item>
-                                    <List.Item.Meta
-                                        avatar={<Avatar shape="square" src={item.detail.icon} />}
-                                        title={<p>{item.detail.title}</p>}
-                                        description={<p>{item.detail.description}</p>}
-                                    />
-                                    <div>
-                                        <p style={{marginLeft: '0.6rem'}}>单价：￥{item.detail.price}</p>
-                                        <InputNumber style={{ width: '7rem' }} min={1} addonBefore='数量：'
-                                        defaultValue={item.number} onChange={(e) => onChange(e, index)} />
-                                    </div>
-                                </List.Item>
-                            )}
-                        />
-                        <div className='line'>
-                            <p>总价：￥${total}</p>
-                            <Button type='primary' onClick={onConfirm}>
-                                支付
-                            </Button>
-                        </div>
-                    </Card>
-                </Content>
-                <MallTabBar activeKey='shoppinCart' />
-                {/* <Footer className='footer'>
-                    <MallTabBar activeKey='shoppinCart' />
-                </Footer> */}
-            </Layout>
+        <div className={styles.create-order}>
+            <div className={styles.header}>
+                <LeftOutlined className={styles.backButton} onClick={onBack} />
+                <div>确认订单</div>
+            </div>
+            <div className={styles.content}>
+                <Card className={styles.address} title={
+                    <div style={{ marginTop: '2rem' }}>
+                        <EnvironmentFilled className={styles.mapIcon} />
+                        <a style={{ marginLeft: '0.9rem', fontSize: '1.8rem', color: 'black' }}>{address}</a>
+                    </div>
+                }>
+                </Card>
+                <Card title='' styles={{ header: { fontSize: '1.2rem' } }}>
+                    <List
+                        className={styles.list}
+                        itemLayout="horizontal"
+                        dataSource={order}
+                        renderItem={(item, index) => (
+                            <List.Item style={{ textAlign: 'left' }} className='list_item'>
+                                <List.Item.Meta
+                                    avatar={<Avatar style={{height: '5rem', width: '5rem'}} shape="square" src={item.detail.imageUrl} />}
+                                    title={<span style={{ fontSize: '1rem'}}>{item.detail.title}</span>}
+                                    description={<span style={{ fontSize: '1rem'}}>{item.detail.description}</span>}
+                                />
+                                <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                                    <div style={{ color: '#ff5000', marginBottom: '2.5rem' }}>￥{item.detail.price}</div>
+                                    <InputNumber style={{ width: '6.5rem', clear: 'both' }} min={1} max={9}
+                                    addonBefore={<MinusOutlined onClick={(e) => onMinus(e, index)}/>}
+                                    addonAfter={<PlusOutlined onClick={(e) => onPlus(e, index)}/>}
+                                    value={item.number} onChange={(e) => onChange(e, index)} />
+                                </div>
+                            </List.Item>
+                        )}
+                    />
+                    <div className={styles.line}>
+                        <span style={{marginTop: '0.3rem'}}>合计：<span style={{color: '#ff5000'}}>￥{total}</span></span>
+                        <button className={styles.confirmButton} onClick={onConfirm} disabled={isEmpty ? true : false}>
+                            提交订单
+                        </button>
+                    </div>
+                </Card>
+            </div>
+            <MallTabBar activeKey='shoppinCart' />
         </div>
     );
 }

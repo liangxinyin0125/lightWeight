@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { LeftOutlined, WechatOutlined, AlipayCircleOutlined } from '@ant-design/icons';
+import { cancelOrder, updateOrderState } from "../../services/orderServices";
 import styles from '../../styles/pay/pay.module.css';
 {/* <WechatOutlined />
 <AlipayCircleOutlined /> */}
@@ -11,9 +12,11 @@ const Pay = () => {
     const [paymentMethod, setPaymentMethod] = useState('wechat');
 
     const handleBackClick = () => {
+        cancelOrder();
         history.goBack();
     };
     const handleConfirmPayment = () => {
+        updateOrderState('pay successfully');
         history.push('/paySuccess');
     };
 

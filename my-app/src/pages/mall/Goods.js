@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-import { LeftOutlined, RightOutlined, TruckOutlined, ReconciliationOutlined, InsuranceOutlined } from '@ant-design/icons';
+import { message } from 'antd';
+import { LeftOutlined, RightOutlined, TruckOutlined, ReconciliationOutlined, InsuranceOutlined, StarOutlined, StarFilled } from '@ant-design/icons';
 import { goodsLists } from '../../services/goodsService.js';
-import MallTabBar from '../../components/MallTabBar.js';
+import { writeShoppincart } from "../../services/shoppincartServices";
 import styles from "../../styles/mall/goods.module.css";
 
 const Goods = ({ }) => {
     const { id } = useParams();
     const history = useHistory();
+    const [messageApi, contextHolder] = message.useMessage();
+    const [isCollected, setIsCollected] = useState(false);
     const [showReturnPolicy, setShowReturnPolicy] = useState(false);
     const [showBrandInfo, setShowBrandInfo] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -23,7 +26,9 @@ const Goods = ({ }) => {
     const handleBackClick = () => {
         history.goBack();
     };
-
+    const handleCollectClick = () => {
+        setIsCollected(!isCollected);
+    };
     const handleModalClose = () => {
         setShowModal(false);
         setModalContent(null);
@@ -35,6 +40,19 @@ const Goods = ({ }) => {
     const handleBrandInfo = () => {
         setModalContent('brandInfo');
         setShowModal(true);
+    };
+    const success = () => {
+        messageApi.open({
+            type: 'success',
+            content: '加购成功',
+        });
+    };
+    const handleAddToCartClick = () => {
+        writeShoppincart(goods);
+        success();
+    };
+    const handleBuyNowClick = () => {
+        // 处理立即购买逻辑
     };
 
     return (
@@ -66,7 +84,7 @@ const Goods = ({ }) => {
                         <div className={styles.detailsTitle}>
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <InsuranceOutlined className={styles.icons} />
-                                退货运费险 七天无理由退货
+                                退货运费险  七天无理由退货
                             </div>
                             <RightOutlined />
                         </div>
@@ -84,15 +102,40 @@ const Goods = ({ }) => {
             </div>
 
             <div className={styles.goodsEvaluation}>
-            </div>
-
-            <div className={styles.end}>
-                <div className={styles.goodsActionsButtons}>
-                    <button className={styles.addToCartButton}>加入购物车</button>
-                    <button className={styles.buyNowButton}>立即购买</button>
+                <div className={styles.evaluList1}>
+                    评价({goods.evaluationAmount})
+                    <RightOutlined className={styles.evaluIcon} />
+                </div>
+                <div className={styles.evaluList2}>
+                    {goods.label.map((label, index) => (
+                        <div key={index} className={styles.evaluLabel}>{label}</div>
+                    ))}
+                </div>
+                <div className={styles.evaluList3}>
+                    <div className={styles.list3Left}>
+                        <img className={styles.profile} src='https://th.bing.com/th/id/R.b08fc70593c069c4f0dde23954881eeb?rik=neZZ%2fzjUFaszpg&riu=http%3a%2f%2fimg.alicdn.com%2fsns_logo%2fTB1e4rMt8Bh1e4jSZFhXXcC9VXa-240-240.png_800x800.jpg&ehk=FLvyPvffz2PQrDUuSkZW1G6cAuSJcXvJYvRrdmY40q8%3d&risl=&pid=ImgRaw&r=0'></img>
+                    </div>
+                    <div className={styles.list3Right}>
+                        <div className={styles.list3_1} style={{ color: '#9e9d9d' }}>匿名买家</div>
+                        <div className={styles.list3_1}>{goods.evaluation}</div>
+                    </div>
                 </div>
             </div>
 
+            <div className={styles.end}>
+                <div className={styles.collect} onClick={handleCollectClick}>
+                    {isCollected ? <StarFilled className={styles.starCollected} /> : <StarOutlined className={styles.star} />}
+                    {isCollected ? '已收藏' : '收藏'}
+                </div>
+                <div className={styles.goodsActionsButtons}>
+                    {/* <Space>
+                        <button className={styles.addToCartButton} onClick={handleAddToCartClick} >加入购物车</button>
+                    </Space> */}
+                    <button className={styles.addToCartButton} onClick={handleAddToCartClick}>加入购物车</button>
+                    <button className={styles.buyNowButton}>立即购买</button>
+                </div>
+            </div>
+            {contextHolder}
 
             <CSSTransition
                 in={showModal}
@@ -109,12 +152,13 @@ const Goods = ({ }) => {
                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
                         {modalContent === 'returnPolicy' && (
                             <div>
-                                <div className={styles.goodsTitle}>退货运费险 七天无理由退货</div>
-                                <div className={styles.lists}>
-                                    <div className={styles.list}>
+                                <div className={styles.modalLists}>
+                                    <div className={styles.modalList}>
+                                        <div className={styles.modalTitle}>退货运费险 七天无理由退货</div>
                                         <div className={styles.detailsTitle}>退货运费险已包含在商品价格中</div>
                                     </div>
-                                    <div className={styles.list}>
+                                    <div className={styles.modalList}>
+                                        <div className={styles.modalTitle}>支持七天无理由退货</div>
                                         <div className={styles.detailsTitle}>本商品支持七天无理由退货</div>
                                     </div>
                                 </div>

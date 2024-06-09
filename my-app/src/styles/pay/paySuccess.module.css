@@ -38,7 +38,9 @@
 .successIcon {
     font-size: 80px;
     margin-bottom: 40px;
-    color: #4caf50;
+    color: #ff9800;
+    color: rgba(255, 87, 0);
+    /* color: #4caf50; */
 }
 .title {
     font-size: 24px;
@@ -62,16 +64,18 @@
     transition: background-color 0.3s ease;
 }
 .viewOrderButton {
-    background-color: #4caf50;
+    background-image: linear-gradient(to right, rgba(255, 199, 2), rgba(255, 151, 4));
     color: #fff;
 }
 .viewOrderButton:hover {
-    background-color: #45a049;
+    background-image: linear-gradient(to right, rgb(249, 196, 6), rgb(242, 143, 4));
 }
 .returnHomeButton {
-    background-color: #2196f3;
+    /* background-color: #2196f3; */
+    background-image: linear-gradient(to right, #ff9800, rgba(255, 87, 0));
     color: #fff;
 }
 .returnHomeButton:hover {
-    background-color: #1e88e5;
+    /* background-color: #1e88e5; */
+    background-image: linear-gradient(to right, #fe8e06, rgb(239, 87, 11));
 }
