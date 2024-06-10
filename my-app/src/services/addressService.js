@@ -7,16 +7,25 @@
 //     },
 // ]
 
+// const writeAddress = (address) => {
+//     localStorage.removeItem('addresses');
+//     address.key = getNumberOfAddress() + 1;
+//     var addresses = JSON.parse(localStorage.getItem('addresses'));
+//     if(addresses == null) {
+//         addresses = [];
+//         localStorage.setItem('addresses', JSON.stringify(addresses.concat(address)));
+//         writeDefaultAddress(1);
+//     }
+//     localStorage.setItem('addresses', JSON.stringify(addresses.concat(address)));
+// }
 const writeAddress = (address) => {
-    localStorage.removeItem('addresses');
-    address.key = getNumberOfAddress() + 1;
-    var addresses = JSON.parse(localStorage.getItem('addresses'));
-    if(addresses == null) {
-        addresses = [];
-        localStorage.setItem('addresses', JSON.stringify(addresses.concat(address)));
-        writeDefaultAddress(1);
+    const addresses = JSON.parse(localStorage.getItem('addresses')) || [];
+    address.key = addresses.length ? addresses[addresses.length - 1].key + 1 : 1; // Ensure unique key
+    addresses.push(address);
+    localStorage.setItem('addresses', JSON.stringify(addresses));
+    if (addresses.length === 1) {
+        writeDefaultAddress(address.key);
     }
-    localStorage.setItem('addresses', JSON.stringify(addresses.concat(address)));
 }
 
 const removeAddress = (key) => {

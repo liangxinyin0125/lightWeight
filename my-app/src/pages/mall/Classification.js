@@ -1,17 +1,33 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import { categories } from '../../services/classificationService';
 import MallTabBar from "../../components/MallTabBar";
 import styles from "../../styles/mall/classification.module.css";
 
 
 const Classification = () => {
-    const defaultCategory = categories.find(category => category.name === '饼干') || categories[0];
-    const [selectedCategory, setSelectedCategory] = useState(defaultCategory);
     const history = useHistory();
+    const location = useLocation();
+    const selectedCategoryId = location.state?.selectedCategoryId;
+    const defaultCategory = categories.find(category => category.name === '饼干') || categories[0];
+    const initialCategory = categories.find(category => category.id === selectedCategoryId) || defaultCategory;
+    const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+
+    // 监听 location.state 的变化，并更新选中的分类
+    useEffect(() => {
+        if (location.state?.selectedCategory) {
+            const category = categories.find(category => category.id === location.state.selectedCategory);
+            if (category) {
+                setSelectedCategory(category);
+            }
+        }
+    }, [location.state]);
 
     const handleSubcategoryClick = (subcategory) => {
-        history.push(`/goodsList/${subcategory.id}`);
+        history.push({
+            pathname: `/goodsList/${subcategory.id}`,
+            state: { selectedCategoryId: selectedCategory.id, subcategoryId: subcategory.id }
+        });
     };
 
     return (

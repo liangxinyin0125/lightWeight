@@ -1,0 +1,107 @@
+/* src/styles/mall/home.module.css */
+.homeContainer {
+    background: linear-gradient(to bottom, #f8542b 1%, transparent 15%);
+    min-height: 100vh;
+    margin-bottom: 20vw;
+  }
+
+  .header {
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    display: inline-block;
+    position: relative;
+  }
+  
+  .title::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+  }
+  
+  .searchContainer {
+    padding: 4vw;
+    text-align: center;
+    
+  }
+  
+  .carouselContainer {
+    padding: 0 3vw;
+    height: 50vw;
+    
+  }
+  
+  
+  .carouselImage {
+    width: 100%;
+    height: 50vw;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  .gridItem {
+    width: 48%;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  
+  .gridItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .infoContainer {
+    padding: 12px;
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;
+    border-top: 1px solid #f0f0f0;
+  }
+  
+  .goodsTitle {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .saleInfo {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .price {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .sales {
+    color: #888;
+  }

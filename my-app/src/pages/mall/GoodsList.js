@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { LeftOutlined, UpOutlined, DownOutlined } from '@ant-design/icons';
 import { goodsLists } from '../../services/goodsService';
 import styles from "../../styles/mall/goodsList.module.css";
 
+export const handleGoodsClick = (id, history) => {
+    history.push(`/goods/${id}`);
+};
+
 const GoodsList = () => {
     const { id } = useParams();
     const history = useHistory();
+    const location = useLocation();
     const [sortOption, setSortOption] = useState('default');
     const [priceOrder, setPriceOrder] = useState('asc');
+    const selectedCategoryId = location.state?.selectedCategoryId;
 
-    const handleGoodsClick = (id) => {
-        history.push(`/goods/${id}`);
-    };
+    // const handleGoodsClick = (id) => {
+    //     history.push(`/goods/${id}`);
+    // };
     const handleBackClick = () => {
-        history.goBack();
+        history.push('/classification', { selectedCategoryId: selectedCategoryId });
     };
 
     const handleSortChange = (option) => {
@@ -92,3 +98,4 @@ const GoodsList = () => {
 }
 
 export default GoodsList;
+// export { handleGoodsClick };

@@ -29,7 +29,7 @@ const MallTabBar = (props) => {
             badge: '99+',
         },
         {
-            key: 'personalCenter',
+            key: 'mine',
             title: '我的',
             icon: <UserOutlined />,
 
